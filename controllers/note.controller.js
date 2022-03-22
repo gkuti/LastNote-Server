@@ -27,10 +27,7 @@ exports.createNote = (req, res) => {
 }
 
 exports.notes = (req, res) => {
-    if (!req.body.userId) {
-        return res.status(400).send({message: "Missing userId"})
-    }
-    const condition = {userId: {$eq: req.body.userId}}
+    const condition = {userId: {$eq: req.params.id}}
 
     Note.find(condition)
         .then(data => {
@@ -44,7 +41,7 @@ exports.notes = (req, res) => {
 }
 
 exports.updateNote = (req, res) => {
-    if (!req.body.userId) {
+    if (!req.body.note) {
         return res.status(400).send({
             message: "Note cannot be empty"
         })
@@ -52,9 +49,9 @@ exports.updateNote = (req, res) => {
 
     const id = req.params.id
 
-    Note.findByIdAndUpdate(id, req.body)
+    Note.findByIdAndUpdate(id, req.body, {returnDocument:"after"})
         .then(data => {
-            res.send({message: "Note updated"})
+            res.send(data)
         })
         .catch(err => {
             res.status(500).send({

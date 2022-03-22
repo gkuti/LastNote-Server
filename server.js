@@ -16,6 +16,7 @@ db.mongoose.connect(db.url)
 require("./routes/note.routes")(app);
 require("./routes/contact.routes")(app);
 require("./routes/user.routes")(app);
+require("./routes/checkin.routes")(app);
 
 app.listen(3000, function () {
     console.log('listening on 3000')

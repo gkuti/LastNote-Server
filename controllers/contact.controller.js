@@ -11,7 +11,7 @@ exports.createContact = (req, res) => {
         userId: req.body.userId,
         contactName: req.body.contactName,
         contactEmail: req.body.contactEmail,
-        contactPhones: req.body.contactPhones,
+        contactPhone: req.body.contactPhone,
     })
 
     contact
@@ -27,10 +27,7 @@ exports.createContact = (req, res) => {
 }
 
 exports.contacts = (req, res) => {
-    if (!req.body.userId) {
-        return res.status(400).send({message: "Missing userId"})
-    }
-    const condition = {userId: {$eq: req.body.userId}}
+    const condition = {userId: {$eq: req.params.id}}
 
     Contact.find(condition)
         .then(data => {
@@ -44,7 +41,7 @@ exports.contacts = (req, res) => {
 }
 
 exports.updateContact = (req, res) => {
-    if (!req.body.userId) {
+    if (!req.body.contactName) {
         return res.status(400).send({
             message: "Contact cannot be empty"
         })
@@ -52,9 +49,9 @@ exports.updateContact = (req, res) => {
 
     const id = req.params.id
 
-    Contact.findByIdAndUpdate(id, req.body)
+    Contact.findByIdAndUpdate(id, req.body, {returnDocument: "after"})
         .then(data => {
-            res.send({message: "Contact updated"})
+            res.send(data)
         })
         .catch(err => {
             res.status(500).send({

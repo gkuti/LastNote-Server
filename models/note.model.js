@@ -4,7 +4,7 @@ module.exports = mongoose => {
             userId: String,
             noteTitle: String,
             note: String,
-            additionalComment: String,
+            additionalComment: String
         },
         {timestamps: true}
     )

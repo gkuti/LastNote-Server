@@ -7,7 +7,7 @@ module.exports = app => {
     router.post("/", notes.createNote)
 
     // all Notes route
-    router.get("/", notes.notes)
+    router.get("/:id", notes.notes)
 
     // update a Note route
     router.put("/:id", notes.updateNote)

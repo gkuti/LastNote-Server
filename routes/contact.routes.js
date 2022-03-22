@@ -7,7 +7,7 @@ module.exports = app => {
     router.post("/", contacts.createContact)
 
     // all Contact route
-    router.get("/", contacts.contacts)
+    router.get("/:id", contacts.contacts)
 
     // update a Contact route
     router.put("/:id", contacts.updateContact)

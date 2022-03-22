@@ -2,9 +2,9 @@ module.exports = mongoose => {
     const schema = mongoose.Schema(
         {
             userId: String,
-            contactName: String,
-            contactEmail: String,
-            contactPhone: String
+            checkinFrequency: String,
+            currentCheckinPhase: String,
+            nextCheckin: String
         },
         {timestamps: true}
     )
@@ -15,5 +15,5 @@ module.exports = mongoose => {
         return object;
     });
 
-    return mongoose.model("contact", schema);
+    return mongoose.model("checkin", schema);
 };
