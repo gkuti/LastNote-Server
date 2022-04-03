@@ -4,7 +4,8 @@ module.exports = mongoose => {
             userId: String,
             checkinFrequency: String,
             currentCheckinPhase: String,
-            nextCheckin: String
+            checkin: Boolean,
+            nextCheckin: Number
         },
         {timestamps: true}
     )

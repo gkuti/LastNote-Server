@@ -20,12 +20,13 @@ exports.saveUser = (req, res) => {
                     if (!createCheckIn) return res.send({message: "User saved"})
                     const today = new Date();
                     const tomorrow = new Date();
-                    tomorrow.setDate(today.getDate() + 1);
+                    tomorrow.setUTCDate(today.getDate() + 1);
                     const checkin = new Checkin({
                         userId: req.body.userId,
                         checkinFrequency: "daily",
                         currentCheckinPhase: "one",
-                        nextCheckin: tomorrow.toISOString(),
+                        checkin: false,
+                        nextCheckin: tomorrow.getTime(),
                     })
                     checkin.save(checkin)
                         .then(data => {
