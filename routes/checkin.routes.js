@@ -4,13 +4,13 @@ module.exports = app => {
 
     const router = require("express").Router()
 
-    // new Note route
+    // Update checkin frequency route
     router.put("/frequency", checkin.checkinFrequency)
 
-    // new Note route
+    // Get checkin route
     router.get("/:id", checkin.getCheckin)
 
-    // new Note route
+    // User checkin route
     router.put("/:id", checkin.checkin)
 
     app.use("/api/checkin", router)

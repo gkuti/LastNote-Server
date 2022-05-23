@@ -3,8 +3,7 @@ module.exports = mongoose => {
         {
             userId: String,
             checkinFrequency: String,
-            currentCheckinPhase: String,
-            checkin: Boolean,
+            currentCheckinPhase: Number,
             nextCheckin: Number
         },
         {timestamps: true}

@@ -2,7 +2,7 @@ const db = require("../models")
 const Contact = db.contacts
 
 exports.createContact = (req, res) => {
-    // Validate request
+    // Validate request body
     if (!req.body.userId) {
         return res.status(400).send({message: "Contact cannot be empty"})
     }
@@ -17,6 +17,7 @@ exports.createContact = (req, res) => {
     contact
         .save(contact)
         .then(data => {
+            console.log(data)
             res.send(data)
         })
         .catch(err => {

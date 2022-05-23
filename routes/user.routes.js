@@ -3,7 +3,7 @@ module.exports = app => {
 
     const router = require("express").Router()
 
-    // new Note route
+    // Save user route
     router.post("/", users.saveUser)
 
     app.use("/api/user", router)

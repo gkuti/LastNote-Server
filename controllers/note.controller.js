@@ -17,6 +17,7 @@ exports.createNote = (req, res) => {
     note
         .save(note)
         .then(data => {
+            console.log(data)
             res.send(data)
         })
         .catch(err => {

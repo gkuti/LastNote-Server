@@ -1,11 +1,9 @@
 const express = require('express')
 const app = express()
-
 app.use(express.json())
-
 const db = require("./models");
 const Cron = require("croner");
-const {checkin} = require("./utils/Util");
+const {checkin} = require("./message/Checkin");
 db.mongoose.connect(db.url)
     .then(() => {
         console.log("Connected to the database!");
@@ -24,6 +22,7 @@ app.listen(3000, function () {
     console.log('listening on 3000')
 })
 
-// const job = Cron('*/5 * * * * *', () => {
-//     checkin()
-// });
+//Cron job, runs checkin function every 10 secs
+const job = Cron('*/10 * * * * *', () => {
+    checkin()
+});

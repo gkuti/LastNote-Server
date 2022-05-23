@@ -3,16 +3,16 @@ module.exports = app => {
 
     const router = require("express").Router()
 
-    // new Note route
+    // New note route
     router.post("/", notes.createNote)
 
-    // all Notes route
+    // All user notes route
     router.get("/:id", notes.notes)
 
-    // update a Note route
+    // Update a note route
     router.put("/:id", notes.updateNote)
 
-    // delete a Note route
+    // Delete a note route
     router.delete("/:id", notes.deleteNote)
 
     app.use("/api/notes", router)
